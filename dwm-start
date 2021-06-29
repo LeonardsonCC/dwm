@@ -1,2 +1,8 @@
-#! /bin/bash
-while type dwm >/dev/null ; do dwm && continue || break ; done
+#!/bin/sh
+
+while true
+do
+    xsetroot -name  "$(date +"%a, %b %d %R")"
+    sleep 1s
+done &
+while true;  do  /usr/local/bin/dwm > /dev/null; done;
