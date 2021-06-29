@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=DWM - TOP
+Comment=dynamic window manager (mitch)
+Exec=/usr/local/bin/dwm-start
+Type=XSession
