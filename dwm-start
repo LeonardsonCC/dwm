@@ -2,7 +2,11 @@
 
 while true
 do
-    xsetroot -name  "$(date +"%a, %b %d %R")"
+    MEMORY_TOTAL=$(cat /proc/meminfo | grep "MemTotal:" | awk '{print substr($2, 0, 4)}')
+    MEMORY_FREE=$(cat /proc/meminfo | grep "MemFree:" | awk '{print substr($2, 0, 4)}')
+    
+    xsetroot -name  "Mem: $(expr $MEMORY_FREE - $MEMORY_TOTAL) / $(date +"%a, %b %d %R")"
     sleep 1s
 done &
+feh --bg-fill --randomize ~/Wallpapers/* &
 while true;  do  /usr/local/bin/dwm > /dev/null; done;

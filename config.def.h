@@ -9,13 +9,13 @@ static const unsigned int systrayspacing = 8;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static const unsigned int gappih    = 23;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 23;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 23;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 23;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro Regular:size=13", "JoyPixels:pixelsize=14:antialias=true:autohint=true" };
+static const char *fonts[]          = { "Source Code Pro Regular:size=12", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
@@ -107,7 +107,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,			                  XK_b,      spawn,		   SHCMD("feh --bg-fill --randomize ~/Wallpapers/* &") },
+	{ MODKEY,			                  XK_b,      spawn,		       SHCMD("feh --bg-fill --randomize ~/Wallpapers/* &") },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
@@ -120,13 +120,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_space,  spawn,          SHCMD("dmenu_run") },
-	{ MODKEY|ShiftMask,             XK_space,      setlayout,      {0} }, 
-	{ MODKEY,			            XK_w,      spawn,		   SHCMD("$BROWSER") },
-	{ MODKEY,			            XK_r,      spawn,		   SHCMD("$TERMINAL -e ranger") },
-	{ MODKEY,			            XK_y,      spawn,		   SHCMD("flameshot gui -p ~/Pictures/screenshots") },
-	{ MODKEY|ShiftMask,			    XK_y,      spawn,		   SHCMD("flameshot full -p ~/Pictures/screenshots") },
-	{ MODKEY|ShiftMask,			    XK_v,      spawn,		   SHCMD("mpv /dev/video0") },
-	{ MODKEY,                       XK_semicolon,      spawn,  SHCMD("skippy-xd") },
+	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} }, 
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("slock") }, 
+	{ MODKEY,			                  XK_w,      spawn,		       SHCMD("$BROWSER") },
+	{ MODKEY,			                  XK_r,      spawn,		       SHCMD("$TERMINAL -e ranger") },
+	{ MODKEY,			                  XK_y,      spawn,		       SHCMD("flameshot gui -p ~/Pictures/screenshots") },
+	{ MODKEY|ShiftMask,			        XK_y,      spawn,		       SHCMD("flameshot full -p ~/Pictures/screenshots") },
+	{ MODKEY|ShiftMask,			        XK_v,      spawn,		   SHCMD("mpv /dev/video0") },
+	{ MODKEY,                       XK_semicolon,spawn,  SHCMD("skippy-xd") },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY,                       XK_n,      shiftview,      {.i = +1 } },
@@ -137,7 +138,7 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[3]} }, // float */
 	{ MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
 	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[4]} }, // monocle
-    { MODKEY|ShiftMask,             XK_c,      setlayout,      {.v = &layouts[5]} }, // dwindle
+  { MODKEY|ShiftMask,             XK_c,      setlayout,      {.v = &layouts[5]} }, // dwindle
 	{ MODKEY,                       XK_g,      togglegaps,     {0} },
 	{ MODKEY|ShiftMask,             XK_g,      defaultgaps,    {0} },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
