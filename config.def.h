@@ -15,10 +15,11 @@ static const unsigned int gappov    = 15;       /* vert outer gap between window
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro Regular:size=12", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
+static const char *fonts[]          = { "UbuntuMono Nerd Font Mono:size=12" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
+static const char *playpausemedia[] = { "/usr/bin/playerctl", "play-pause", NULL };
 static const char col_gray1[]       = "#232731";
 static const char col_gray2[]       = "#333333";
 static const char col_gray3[]       = "#bbbbbb";
@@ -144,7 +145,9 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                            XF86XK_AudioMute, spawn, {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
-	{ MODKEY|ControlMask,		    XK_comma,  cyclelayout,    {.i = -1 } },
+	{ 0,                            XF86XK_AudioPlay, spawn, {.v = playpausemedia   } },
+	{ 0,                            XF86XK_AudioPause, spawn, {.v = playpausemedia   } },
+	{ MODKEY|ControlMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
