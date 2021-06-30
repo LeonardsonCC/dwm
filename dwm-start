@@ -12,7 +12,7 @@ while true
     VOLUME_INDICATOR="$(if [ $(pacmd list-sinks | awk 'BEGIN { FS=":" } /muted:/ {print $2}') = "yes" ]; then echo "ﱝ"; else echo ""; fi)"
     VOLUME="$VOLUME_INDICATOR $(pacmd list-sinks | awk 'BEGIN { FS="/" } /front-left:/ {print $2}' | xargs)"
 
-    BATTERY=" $(cat /sys/class/power_supply/BAT0/capacity)%"
+    BATTERY=" $(cat /sys/class/power_supply/*/capacity)%"
 
     DATE=" $( date +"%a, %b %d %R" )"
     
