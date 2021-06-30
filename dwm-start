@@ -5,7 +5,7 @@ NETWORK_ADAPTER="wlp1s0"
 while true
   do
     MEMORY=" $(free -m | grep '^Mem' | awk '{printf("%.2f%", $3/$2*100)}')%"
-    CPU=" $(top -b -n1 | grep ^%Cpu | awk '{printf("%.2f%%"), 100-$8}')"
+    CPU=" $(top -b -n1 | grep ^%Cpu | awk '{printf("%.2f%"), 100-$8}')"
 
     NETWORK_SSID=" $(nmcli --nocheck c show | grep "wifi" | awk "/$NETWORK_ADAPTER/ {print $1}" | xargs | awk 'BEGIN { FS=" " } {print $1}')"
 
