@@ -61,9 +61,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title                     tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,                     0,            0,           -1 },
+	{ "Firefox",  NULL,       NULL,                     1 << 8,       0,           -1 },
+	{ NULL,       NULL,       "Picture-in-Picture",     0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -101,7 +102,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 #include <X11/XF86keysym.h>
 #include "./patches/shiftview.c"
