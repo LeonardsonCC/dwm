@@ -1,13 +1,15 @@
 #!/bin/sh
 
+NETWORK_ADAPTER="wlp1s0"
+
 while true
   do
     MEMORY=" $(free -m | grep '^Mem' | awk '{printf("%.2f%", $3/$2*100)}')%"
     CPU=" $(top -b -n1 | grep ^%Cpu | awk '{printf("%.2f%%"), 100-$8}')"
 
-    NETWORK_SSID=" $(nmcli --nocheck c show | grep "wifi" | awk "/wlp1s0/ {print $1}" | xargs | awk 'BEGIN { FS=" " } {print $1}')"
+    NETWORK_SSID=" $(nmcli --nocheck c show | grep "wifi" | awk "/$NETWORK_ADAPTER/ {print $1}" | xargs | awk 'BEGIN { FS=" " } {print $1}')"
 
-    VOLUME_INDICATOR="$(if [ $(pacmd list-sinks | awk 'BEGIN { FS=":" } /muted:/ {print $2}') = "yes" ]; then echo "ﱝ"; else; echo ""; fi)"
+    VOLUME_INDICATOR="$(if [ $(pacmd list-sinks | awk 'BEGIN { FS=":" } /muted:/ {print $2}') = "yes" ]; then echo "ﱝ"; else echo ""; fi)"
     VOLUME="$VOLUME_INDICATOR $(pacmd list-sinks | awk 'BEGIN { FS="/" } /front-left:/ {print $2}' | xargs)"
 
     BATTERY=" $(cat /sys/class/power_supply/BAT0/capacity)%"
