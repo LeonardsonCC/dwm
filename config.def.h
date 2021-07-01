@@ -66,7 +66,8 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "Picture in picture",     0,            1,            -1 },
 	{ "Code",     NULL,       NULL,                     1 << 1,       0,            -1 },
 	{ "St",       NULL,       NULL,                     1 << 2,       0,            -1 },
-	{ "TelegramDesktop",       NULL,       NULL,        1 << 8,       0,            -1 },
+	{ "TelegramDesktop",      NULL,       NULL,         1 << 8,       0,            -1 },
+	{ "discord",  NULL,       NULL,                     1 << 8,       0,            -1 },
 };
 
 /* layout(s) */
